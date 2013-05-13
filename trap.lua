@@ -73,54 +73,32 @@ minetest.register_node("bobblocks:trap_grass", {
     climbable = false,
 })
 
-minetest.register_node("bobblocks:trap_spike", {
-	description = "Trap Spike Minor",
-    drawtype = "plantlike",
-    visual_scale = 1,
-	tile_images = {"bobblocks_minorspike.png"},
-	inventory_image = ("bobblocks_minorspike.png"),
+local function spikenode(name, desc, texture, drop, groups, drawtype)
+minetest.register_node("bobblocks:trap_"..name, {
+	description = desc,
+    drawtype = drawtype,
+	tile_images = {"bobblocks_"..texture..".png"},
+	inventory_image = ("bobblocks_"..texture..".png"),
     paramtype = "light",
     walkable = false,
 	sunlight_propagates = true,
-    groups = {cracky=3,melty=3},
+    groups = groups,
+	drop = drop,
 })
+end
 
-minetest.register_node("bobblocks:trap_spike_set", {
-	description = "Trap Spike Minor Set",
-    drawtype = "raillike",
-    visual_scale = 1,
-	tile_images = {"bobblocks_trap_set.png"},
-    paramtype = "light",
-    walkable = false,
-	sunlight_propagates = true,
-    groups = {cracky=3,melty=3,not_in_creative_inventory=1},
-    drop = 'bobblocks:trap_spike',
-})
+local function spike1(name, desc, texture)
+spikenode(name, desc, texture, "bobblocks:trap_"..name, {cracky=3,melty=3}, "plantlike")
+end
 
+local function spike2(name, desc, texture, drop)
+spikenode(name, desc, texture, drop, {cracky=3,melty=3,not_in_creative_inventory=1}, "raillike")
+end
 
-minetest.register_node("bobblocks:trap_spike_major", {
-	description = "Trap Spike Major",
-    drawtype = "plantlike",
-    visual_scale = 1,
-	tile_images = {"bobblocks_majorspike.png"},
-	inventory_image = ("bobblocks_majorspike.png"),
-    paramtype = "light",
-    walkable = false,
-	sunlight_propagates = true,
-    groups = {cracky=2,melty=2},
-})
-
-minetest.register_node("bobblocks:trap_spike_major_set", {
-	description = "Trap Spike Major Set",
-    drawtype = "raillike",
-    visual_scale = 1,
-	tile_images = {"bobblocks_trap_set.png"},
-    paramtype = "light",
-    walkable = false,
-	sunlight_propagates = true,
-    groups = {cracky=3,melty=3,not_in_creative_inventory=1},
-    drop = 'bobblocks:trap_spike_major',
-})
+spike1("spike", "Trap Spike Minor", "minorspike")
+spike2("spike_set", "Trap Spike Minor Set", "trap_set", 'bobblocks:trap_spike')
+spike1("spike_major", "Trap Spike Major", "majorspike")
+spike2("spike_major_set", "Trap Spike Major Set", "trap_set", 'bobblocks:trap_spike_major')
 
 
 -- Crafting
