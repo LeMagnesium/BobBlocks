@@ -26,7 +26,7 @@ minetest.register_node("bobblocks:btm", {
 	material = minetest.digprop_dirtlike(1.0),
 	legacy_facedir_simple = true,
 	groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3,not_in_creative_inventory=1},
-	
+
 })
 
 
@@ -118,7 +118,7 @@ minetest.register_node("bobblocks:"..colour.."pole_off", {
 			state = mesecon.state.off,
 			onstate = "bobblocks:"..colour.."pole"
 		}}
-	
+
 })
 
 
@@ -161,7 +161,7 @@ minetest.register_node("bobblocks:greyblock_off", {
 			state = mesecon.state.off,
 			onstate = "bobblocks:greyblock"
 		}}
-	
+
 })
 
 minetest.register_node("bobblocks:greypole", {
@@ -208,7 +208,7 @@ local bobblocks_crafts_list = {
 
 for _,items in ipairs(bobblocks_crafts_list[1]) do
 	minetest.register_craft({
-		output = "bobblocks:"..items[1].."block 2", 
+		output = "bobblocks:"..items[1].."block 2",
 		recipe = {
 			{"default:glass", "default:torch", "default:"..items[2]},
 		},
@@ -217,7 +217,7 @@ end
 
 for _,items in ipairs(bobblocks_crafts_list[2]) do
 	minetest.register_craft({
-		output = "bobblocks:"..items[1].."block 2", 
+		output = "bobblocks:"..items[1].."block 2",
 		recipe = {
 			{"bobblocks:"..items[2].."block", "bobblocks:"..items[3].."block"},
 		},
@@ -245,4 +245,3 @@ minetest.register_craft({
 
 -- MESECON
 -- Add jeija to bobblocks\default.txt and paste the below in at the bottom of bobblocks\blocks.lua
-
